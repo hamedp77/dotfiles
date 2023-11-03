@@ -1,9 +1,9 @@
 # ls stuff
 alias ls='ls -F --color=auto --show-control-chars'
-alias la="ls -A"
-alias l="ls -CF"
-alias ll="ls -lhAF"
-alias l.="ls -d .*"
+alias la='ls -A'
+alias l='ls -CF'
+alias ll='ls -lhAF'
+alias l.='ls -d .*'
 
 # cd stuff
 alias ~='cd $HOME'
@@ -16,21 +16,23 @@ alias .4='cd ../../../../'
 alias .5='cd ../../../../../'
 
 # grep stuff
-alias grep="grep --color=auto"
-alias egrep="egrep --color=auto"
-alias fgrep="fgrep --color-auto"
+alias grep='grep --color=auto'
+alias egrep='egrep --color=auto'
+alias fgrep='fgrep --color-auto'
 
 # apt stuff
 alias sai='sudo apt install'
 alias sau='sudo apt update'
-alias sug='sudo apt upgrade'
+alias sag='sudo apt upgrade'
 alias supercharge='sudo apt update && sudo apt upgrade'
 
 # System state
-alias reboot="sudo /sbin/reboot"
-alias poweroff="sudo /sbin/poweroff"
-alias halt="sudo /sbin/halt"
-alias shutdown="sudo /sbin/shutdown"
+if [ $UID -ne 0 ]; then
+    alias reboot='sudo /usr/sbin/reboot'
+    alias poweroff='sudo /usr/sbin/poweroff'
+    alias halt='sudo /usr/sbin/halt'
+    alias shutdown='sudo /usr/sbin/shutdown'
+fi
 
 # Show open (listening) TCP and UDP ports
 alias ports='ss -tulpn'
