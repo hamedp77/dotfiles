@@ -43,6 +43,15 @@ alias vea='source ./venv/bin/activate' # Activate venv
 alias ved='deactivate' # Deactivate if venv active
 alias ver='rm -rf ./venv' # Remove venv if present
 
+# pip stuff
+alias pipi='pip install'
+alias pipu='pip uninstall'
+alias pipl='pip list'
+alias pipf='pip freeze'
+alias pipff='pip freeze > requirements.txt'
+alias pipg='pip install --upgrade'
+alias pipir='pip install -r requirements.txt'
+
 # Dotfile management with git
 alias cfg='/usr/bin/git --git-dir=$HOME/dotfiles --work-tree=$HOME'
 
