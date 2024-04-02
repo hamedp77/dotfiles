@@ -18,7 +18,7 @@ alias .5='cd ../../../../../'
 # grep stuff
 alias grep='grep --color=auto'
 alias egrep='egrep --color=auto'
-alias fgrep='fgrep --color-auto'
+alias fgrep='fgrep --color=auto'
 
 # apt stuff
 alias sai='sudo apt install'
