@@ -25,6 +25,7 @@ alias sai='sudo apt install'
 alias sau='sudo apt update'
 alias sag='sudo apt upgrade'
 alias supercharge='sudo apt update && sudo apt upgrade'
+alias clean='sudo apt autoremove'
 
 # System state
 if [ $UID -ne 0 ]; then
