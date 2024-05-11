@@ -29,7 +29,7 @@ return {
             end, {
                 expr = true,
                 buffer = bufnr,
-                desc = "Jump to next hunk"
+                desc = 'Jump to next hunk'
             })
             vim.keymap.set({'n', 'v'}, '[c', function()
                 if vim.wo.diff then
@@ -42,7 +42,7 @@ return {
             end, {
                 expr = true,
                 buffer = bufnr,
-                desc = "Jump to previous hunk"
+                desc = 'Jump to previous hunk'
             })
         end
     }
