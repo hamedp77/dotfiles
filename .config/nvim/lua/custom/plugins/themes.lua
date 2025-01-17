@@ -28,4 +28,10 @@ return {
         name = 'rose-pine',
         priority = 1000
     },
+
+    {
+        "folke/tokyonight.nvim",
+        name = 'tokyonight',
+        priority = 1000,
+    },
 }
