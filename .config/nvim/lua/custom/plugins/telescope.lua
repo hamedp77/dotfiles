@@ -16,7 +16,7 @@ return {
             end
         }
     },
-    
+
     config = function()
         require('telescope').setup {
             defaults = {
