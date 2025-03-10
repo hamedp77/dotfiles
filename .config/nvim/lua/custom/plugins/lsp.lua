@@ -2,7 +2,7 @@ return {
     -- LSP Configuration & Plugins
     'neovim/nvim-lspconfig',
     dependencies = {
-      -- Automatically install LSPs to stdpath for neovim
+        -- Automatically install LSPs to stdpath for neovim
         {
             'williamboman/mason.nvim',
             config = true
@@ -98,10 +98,10 @@ return {
                 gofumpt = true,
             },
             lua_ls = {
-            Lua = {
-                workspace = { checkThirdParty = false },
-                telemetry = { enable = false },
-            },
+                Lua = {
+                    workspace = { checkThirdParty = false },
+                    telemetry = { enable = false },
+                },
             },
         }
 
@@ -118,12 +118,12 @@ return {
 
         mason_lspconfig.setup_handlers {
             function(server_name)
-            require('lspconfig')[server_name].setup {
-                capabilities = capabilities,
-                on_attach = on_attach,
-                settings = servers[server_name],
-                filetypes = (servers[server_name] or {}).filetypes,
-            }
+                require('lspconfig')[server_name].setup {
+                    capabilities = capabilities,
+                    on_attach = on_attach,
+                    settings = servers[server_name],
+                    filetypes = (servers[server_name] or {}).filetypes,
+                }
             end
         }
     end
