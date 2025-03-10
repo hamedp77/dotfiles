@@ -1,4 +1,5 @@
 require('custom.keymap')
 require('custom.options')
 require('custom.lazy_init')
+require('custom.auto_format')
 require('custom.default_theme')
