@@ -81,3 +81,14 @@ vim.api.nvim_create_autocmd("BufWritePre", {
       vim.lsp.buf.format({async = false})
     end
 })
+
+-- pylsp autoformat on save
+vim.api.nvim_create_autocmd("BufWritePre", {
+  pattern = "*.py",
+  callback = function()
+      local mode = vim.api.nvim_get_mode().mode
+      if vim.bo.modified == true and mode == 'n' then
+        vim.lsp.buf.format({async = false})
+      end
+  end
+})
