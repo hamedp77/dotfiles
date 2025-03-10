@@ -88,6 +88,8 @@ return {
             -- rust_analyzer = {},
             -- tsserver = {},
             -- html = { filetypes = { 'html', 'twig', 'hbs'} },
+            marksman = {},
+            pylsp = {},
             gopls = {
                 analyses = {
                     unusedparams = true,
