@@ -4,10 +4,19 @@ return {
     dependencies = {
         -- Automatically install LSPs to stdpath for neovim
         {
-            'williamboman/mason.nvim',
+            'mason-org/mason.nvim',
+            opts = {
+                ui = {
+                    icons = {
+                        package_installed = '✓',
+                        package_pending = '➜',
+                        package_uninstalled = '✗'
+                    }
+                }
+            },
             config = true
         },
-        'williamboman/mason-lspconfig.nvim',
+        'mason-org/mason-lspconfig.nvim',
 
         -- Useful status updates for LSP
         -- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
@@ -29,13 +38,14 @@ return {
     config = function()
         -- [[ Configure LSP ]]
         --  This function gets run when an LSP connects to a particular buffer.
-        local on_attach = function(_, bufnr)
+        local on_attach = function(args)
             -- NOTE: Remember that lua is a real programming language, and as such it is possible
             -- to define small helper and utility functions so you don't have to repeat yourself
             -- many times.
             --
             -- In this case, we create a function that lets us more easily define mappings specific
             -- for LSP related items. It sets the mode, buffer and description for us each time.
+            local bufnr = args.buf
             local nmap = function(keys, func, desc)
                 if desc then
                     desc = 'LSP: ' .. desc
@@ -88,8 +98,8 @@ return {
             -- rust_analyzer = {},
             -- tsserver = {},
             -- html = { filetypes = { 'html', 'twig', 'hbs'} },
-            marksman = {},
-            pylsp = {},
+            marksman = true,
+            ruff = true,
             gopls = {
                 analyses = {
                     unusedparams = true,
@@ -112,19 +122,21 @@ return {
         -- Ensure the servers above are installed
         local mason_lspconfig = require('mason-lspconfig')
 
-        mason_lspconfig.setup {
-            ensure_installed = vim.tbl_keys(servers),
-        }
+        mason_lspconfig.setup({
+            ensure_installed = vim.tbl_keys(servers)
+        })
 
-        mason_lspconfig.setup_handlers {
-            function(server_name)
-                require('lspconfig')[server_name].setup {
-                    capabilities = capabilities,
-                    on_attach = on_attach,
-                    settings = servers[server_name],
-                    filetypes = (servers[server_name] or {}).filetypes,
-                }
+        vim.api.nvim_create_autocmd('LspAttach', { callback = on_attach })
+
+        for name, config in pairs(servers) do
+            if config == true then
+                config = {}
             end
-        }
+            config = vim.tbl_deep_extend('force', {}, {
+                capabilities = capabilities,
+            }, config)
+
+            require('lspconfig')[name].setup(config)
+        end
     end
 }
