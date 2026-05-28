@@ -136,7 +136,7 @@ return {
                 capabilities = capabilities,
             }, config)
 
-            require('lspconfig')[name].setup(config)
+            vim.lsp.config(name, config)
         end
     end
 }
